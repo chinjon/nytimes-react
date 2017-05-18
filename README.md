@@ -1,1 +1,1 @@
-# nytimes-react
+# New York Times React
