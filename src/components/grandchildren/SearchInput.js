@@ -4,7 +4,9 @@ import {Input} from 'semantic-ui-react';
 const SearchInput = (props) => {
     return (
         <Input 
-            fluid={true}
+            icon={"search"}
+            iconPosition={"left"}
+            size={"large"}
             placeholder={props.placeholder}
             type={props.type}
             value={props.value}
