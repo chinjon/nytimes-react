@@ -20,8 +20,9 @@ class SearchBar extends Component {
         }
     }
 
-    onInputChange() {
-        
+    onInputChange(query) {
+        this.setState({query});
+        this.props.onSearchQueryChange(query);
     }
 
     render(){
@@ -34,7 +35,7 @@ class SearchBar extends Component {
                     value={ query }
                     name="query"
                     label="Query"
-                    onChange={()=> this.onInputChange.bind(this)}
+                    onChange={event => this.onInputChange(event.target.value)}
                 />
             </Container>
         )
