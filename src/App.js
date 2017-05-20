@@ -29,11 +29,16 @@ class App extends Component {
     fetch(url).then(response =>response.json()).then(result=> console.log(result))
   }
 
+  onQueryChange(query) {
+    this.setState({query})
+    console.log("Called From App Component: ", query)
+  }
+
   render() {
     return (
       <div style={style.base}>
         <PageHeader />
-        <SearchBar onSearchQueryChange={this.searchNYTimes} />
+        <SearchBar onSearchQueryChange={this.onQueryChange.bind(this)} />
       </div>
     );
   }
