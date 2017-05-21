@@ -74,7 +74,7 @@ class App extends Component {
           /> : 
           null }
           <div style={style.footer}>
-            <p>Built by Jonathan Chin</p>
+            <p>Built with coffee and anxiety by <a target="_blank" href="https://github.com/chinjon/nytimes-react">Jonathan Chin</a></p>
           </div>
       </div>
     );
