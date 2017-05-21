@@ -15,6 +15,17 @@ const style = {
   resultsList: {
     margin: "5em 0 0 0",
     width: "80%"
+  },
+  footer: {
+    position: "fixed",
+    bottom: "0",
+    left: "0",
+    paddingTop: '1em',
+    width: "100%",
+    height: "50px",
+    textAlign: "center",
+    backgroundColor: "#eee",
+    lineHeight: '3em'
   }
 }
 
@@ -62,6 +73,9 @@ class App extends Component {
             results={results}
           /> : 
           null }
+          <div style={style.footer}>
+            <p>Built by Jonathan Chin</p>
+          </div>
       </div>
     );
   }
