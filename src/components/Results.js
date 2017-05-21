@@ -25,11 +25,9 @@ const Results = (props) => {
 
         return (
             <Container style={style.base}>
-
                 <Item.Group divided>        
                         {items}                  
                 </Item.Group>
-
             </Container>
         )
 }
