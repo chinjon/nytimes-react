@@ -1,13 +1,37 @@
-import React, {Component} from 'react';
-import {Item} from 'semantic-ui-react';
+import React from 'react';
+import {Item, Container} from 'semantic-ui-react';
+import Radium from 'radium';
 
-class Results extends Component {
-    render() {
-        return (
-            <Item.Group>
-            </Item.Group>
-        )
+import ResultItem from './grandchildren/ResultItem';
+
+const style = {
+    base: {
+        margin: "4em 0 5em 0",
+        padding: "1em",
+        width: "55%"
     }
 }
 
-export default Results;
+
+const Results = (props) => {
+        const items = props.results.map(item => {
+            return (
+                <ResultItem     
+                    item={item}
+                    key={item._id}
+                />
+            )
+        })
+
+        return (
+            <Container style={style.base}>
+
+                <Item.Group divided>        
+                        {items}                  
+                </Item.Group>
+
+            </Container>
+        )
+}
+
+export default Radium(Results);

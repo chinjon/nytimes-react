@@ -31,7 +31,7 @@ class SearchBar extends Component {
 
     handleSubmitClick = (event) => {
         event.preventDefault()
-        console.log("Called From Search Bar Component: ", this.state.query)
+        this.props.onSearchQuerySubmit(event);
     }
 
     render(){

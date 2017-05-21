@@ -5,7 +5,9 @@
   "dependencies": {
     "radium": "^0.19.1",
     "react": "^15.5.4",
+    "react-animations": "^0.1.0",
     "react-dom": "^15.5.4",
+    "react-notification-system": "^0.2.14",
     "semantic-ui-react": "^0.68.3"
   },
   "devDependencies": {
