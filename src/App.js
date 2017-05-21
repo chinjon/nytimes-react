@@ -59,6 +59,9 @@ class App extends Component {
     query ? this.searchNYTimes(query) : alert("No term entered!")
   }
 
+  onArticleSave = event => {
+  }
+
   render() {
     const {results} = this.state
     return (
