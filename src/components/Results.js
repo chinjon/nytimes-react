@@ -6,7 +6,7 @@ import ResultItem from './grandchildren/ResultItem';
 
 const style = {
     base: {
-        margin: "4em 0 5em 0",
+        margin: "4em 0 7em 0",
         padding: "1em",
         width: "55%"
     }

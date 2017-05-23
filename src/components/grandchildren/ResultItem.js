@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Item} from 'semantic-ui-react';
+import { Item, Button, Icon } from 'semantic-ui-react';
 
 const noImgPlaceholder = "https://placeholdit.imgix.net/~text?txtsize=26&txt=No+Image+Found&w=150&h=150&txttrack=0"
 
@@ -28,6 +28,22 @@ const ResultItem = ({item}) => {
                 <Item.Description>
                     {item.snippet}
                 </Item.Description>
+                <Item.Extra>
+                    <Button 
+                        color="teal"
+                        compact 
+                        floated="right" 
+                        size="medium"
+                        animated="vertical"
+                    >
+                        <Button.Content hidden>
+                            Save
+                        </Button.Content>
+                        <Button.Content visible>
+                        <Icon name="save"/>
+                        </Button.Content>
+                    </Button>
+                </Item.Extra>
             </Item.Content>
         </Item>
     )
