@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Radium from 'radium';
+import NotificationSystem from 'react-notification-system';
 
 import SearchBar from './components/SearchBar';
 import PageHeader from './components/PageHeader';
@@ -36,8 +37,19 @@ class App extends Component {
 
     this.state = {
       results: [],
-      query: ""
+      query: "",
+      _notificationSystem: null
     }
+  }
+
+  noTermEnteredNotification = event => {
+    event.preventDefault()
+    this._notificationSystem.addNotification({
+      message: 'No term entered!',
+      title: "ERROR",
+      level: 'error',
+      position: 'tr'
+    })
   }
 
   searchNYTimes(query) {
@@ -56,11 +68,16 @@ class App extends Component {
 
   onSearchSubmit = event =>{
     const {query} = this.state;
-    query ? this.searchNYTimes(query) : alert("No term entered!")
+    // query ? this.searchNYTimes(query) : alert("No term entered!")
+    query ? this.searchNYTimes(query) : this.noTermEnteredNotification(event)
   }
 
   onArticleSave = event => {
 
+  }
+
+  componentDidMount() {
+    this._notificationSystem = this.refs.notificationSystem;
   }
 
   doesLocalStorageContain() {
@@ -82,6 +99,7 @@ class App extends Component {
           onSearchQueryChange={this.onQueryChange.bind(this)} 
           onSearchQuerySubmit={this.onSearchSubmit.bind(this)}
         />
+        <NotificationSystem ref="notificationSystem" />
         { results ? 
           <Results 
             results={results}
