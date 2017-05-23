@@ -60,6 +60,17 @@ class App extends Component {
   }
 
   onArticleSave = event => {
+
+  }
+
+  doesLocalStorageContain() {
+    const stash = JSON.parse(localStorage.getItem("nytStash"));
+
+    if(stash) {
+      console.log("Has items")
+    } else {
+      console.log("Empty")
+    }
   }
 
   render() {
