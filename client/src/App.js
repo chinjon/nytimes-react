@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   searchNYTimes(query) {
-    const url = `https://cors.now.sh/https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${KEY}&q=${query}`;
+    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${KEY}&q=${query}`;
 
     fetch(url).then(response =>response.json()).then(result => {
       this.setState({
@@ -68,7 +68,9 @@ class App extends Component {
 
   onSearchSubmit = event =>{
     const {query} = this.state;
-    // query ? this.searchNYTimes(query) : alert("No term entered!")
+    this.setState({
+      results: []
+    })
     query ? this.searchNYTimes(query) : this.noTermEnteredNotification(event)
   }
 

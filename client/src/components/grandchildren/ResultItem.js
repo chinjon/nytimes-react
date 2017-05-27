@@ -10,7 +10,7 @@ const ResultItem = ({item}) => {
     return (
         <Item>
             <Item.Image 
-                src={item.multimedia ? 
+                src={item.multimedia.length > 0 ? 
                     `${imgNYTParse}${item.multimedia[1].url}` :
                     noImgPlaceholder
                 }

@@ -6,6 +6,8 @@ const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${
 
 fetch(url).then(response =>response.json()).then(result=> console.log(result))
 
+console.log(url)
+
 // Parameters
     // q
         // query
