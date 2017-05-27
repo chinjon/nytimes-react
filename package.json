@@ -1,22 +1,19 @@
+
 {
   "name": "nytimes-react",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "radium": "^0.19.1",
-    "react": "^15.5.4",
-    "react-animations": "^0.1.0",
-    "react-dom": "^15.5.4",
-    "react-notification-system": "^0.2.14",
-    "semantic-ui-react": "^0.68.3"
-  },
-  "devDependencies": {
-    "react-scripts": "0.9.5"
+    "express": "4.13.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "babel-node server.js",
+    "client": "babel-node start-client.js",
+    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "concurrently": "3.1.0"
   }
 }
