@@ -12,8 +12,8 @@ routes.get('/api/test', (req, res) => {
 routes.get("/api/articles", (req, res) => {
     Article.find({}, (err, articles) => {
         err ? res.status(400).send() : res.json(articles)
-    })
-})
+    });
+});
 
 routes.post("/api/articles", (req, res) => {
     let article = new Article({
@@ -27,6 +27,23 @@ routes.post("/api/articles", (req, res) => {
     }, (e) => {
         res.status(400).send(e);
     });
-})
+});
+
+routes.delete("/api/articles/:id", (req, res) => {
+    let articleId = req.params.id;
+
+    if(!ObjectID.isValid(articleId)) {
+        return res.status(404).send();
+    };
+
+    Article.findByIdAndRemove(articleId).then((article) => {
+        if(!article) {
+           return res.status(404).send();
+        }
+        res.send({article});
+    }).catch((e) => {
+       return res.status(400).send(e);
+    })
+});
 
 module.exports = routes;
