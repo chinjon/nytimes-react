@@ -26,7 +26,8 @@ const style = {
     height: "50px",
     textAlign: "center",
     backgroundColor: "#eee",
-    lineHeight: '3em'
+    lineHeight: '3em',
+    zIndex: "100"
   }
 }
 
