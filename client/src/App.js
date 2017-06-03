@@ -39,7 +39,8 @@ class App extends Component {
     this.state = {
       results: [],
       query: "",
-      _notificationSystem: null
+      _notificationSystem: null,
+      savedArticles: [],
     }
   }
 
