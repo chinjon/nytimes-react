@@ -7,9 +7,11 @@ const helpers = {
         return new Promise((resolve, reject) => {
             axios.get('/api/articles').then(res=> {
                 console.log('getting articles')
-                console.log(res);
-                resolve(res);
+                console.log(res.data);
+                resolve(res.data);
             })
         })
     }
 }
+
+module.exports = helpers;

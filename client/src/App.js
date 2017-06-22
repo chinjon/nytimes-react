@@ -5,6 +5,7 @@ import NotificationSystem from 'react-notification-system';
 import SearchBar from './components/SearchBar';
 import PageHeader from './components/PageHeader';
 import Results from './components/Results';
+import SavedArticles from './components/SavedArticles';
 
 
 import {KEY} from './hide';
@@ -109,6 +110,8 @@ class App extends Component {
             results={results}
           /> : 
           null }
+
+        <SavedArticles />
           <div style={style.footer}>
             <p>Built with coffee and anxiety by <a target="_blank" href="https://github.com/chinjon/nytimes-react">Jonathan Chin</a></p>
           </div>
