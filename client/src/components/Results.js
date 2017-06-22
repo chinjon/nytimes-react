@@ -14,11 +14,13 @@ const style = {
 
 
 const Results = (props) => {
+
         const items = props.results.map(item => {
             return (
                 <ResultItem     
                     item={item}
                     key={item._id}
+                    onClick={() => props.onArticleSave(event).bind(this)}
                 />
             )
         })
