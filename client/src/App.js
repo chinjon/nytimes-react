@@ -7,6 +7,8 @@ import PageHeader from './components/PageHeader';
 import Results from './components/Results';
 import SavedArticles from './components/SavedArticles';
 
+import helpers from './components/utils/helpers';
+
 
 import {KEY} from './hide';
 
@@ -55,6 +57,12 @@ class App extends Component {
     })
   }
 
+  loadSavedArticles() {
+        helpers.loadSavedArticles()
+        .then(savedArticles => this.setState({savedArticles}))
+        .catch(err=> console.log(err))
+  }
+
   searchNYTimes(query) {
     const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${KEY}&q=${query}`;
 
@@ -78,7 +86,19 @@ class App extends Component {
   }
 
   onArticleSave = event => {
+      event.preventDefault();
+      const {results} = this.state;
+      console.log(this.filterArticleFromResults(results, event.target.key))
+  }
 
+  filterArticleFromResults(data, selectedArticleId) {
+    return data.filter(e => {
+      return e._id === selectedArticleId;
+    })
+  }
+
+  componentWillMount() {
+    this.loadSavedArticles();
   }
 
   componentDidMount() {
@@ -108,10 +128,11 @@ class App extends Component {
         { results ? 
           <Results 
             results={results}
+            onArticleSave={this.onArticleSave.bind(this)}
           /> : 
           null }
 
-        <SavedArticles />
+          <SavedArticles />
           <div style={style.footer}>
             <p>Built with coffee and anxiety by <a target="_blank" href="https://github.com/chinjon/nytimes-react">Jonathan Chin</a></p>
           </div>
