@@ -11,6 +11,11 @@ const ArticleSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    multimedia: {
+        type: String,
+        required: true,
+        default: "https://placeholdit.imgix.net/~text?txtsize=26&txt=No+Image+Found&w=150&h=150&txttrack=0"
+    },
     description: {
         type: String,
         required: true

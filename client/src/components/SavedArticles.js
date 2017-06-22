@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import {Container} from 'semantic-ui-react';
 import helpers from './utils/helpers';
 
 export default class SavedArticles extends Component {
@@ -23,16 +23,28 @@ export default class SavedArticles extends Component {
 
     componentWillMount() {
         this.loadSavedArticles()
-
-        console.log(this.state.savedArticles)
     }
 
+    renderSavedArticles(articles) {
+        const {savedArticles} = this.state;
+        if(savedArticles.length > 0) {
+            return (
+                <div>
+                    {
+                        savedArticles.map((item,i)=> {
+                            return <p key={i}>{item.title}</p>
+                        })
+                    }
+                </div>
+            )
+        }
+    }
 
     render() {
         return (
-            <div>
-
-            </div>
+            <Container>
+                {this.renderSavedArticles(this.state.savedArticles)}
+            </Container>
         )
     }
 }
