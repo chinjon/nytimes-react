@@ -15,12 +15,18 @@ const style = {
 
 const Results = (props) => {
 
+        const saveArticle = (event) => {
+            event.preventDefault();
+
+            console.log('clicking');
+        }
+
         const items = props.results.map(item => {
             return (
                 <ResultItem     
                     item={item}
                     key={item._id}
-                    onClick={() => props.onArticleSave(event).bind(this)}
+                    onClick={saveArticle.bind(this)}
                 />
             )
         })

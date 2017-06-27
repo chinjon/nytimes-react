@@ -87,7 +87,7 @@ class App extends Component {
 
   onArticleSave = event => {
       event.preventDefault();
-      console.log('clicking')
+      console.log(event.target.key)
       // const {results} = this.state;
       // console.log(this.filterArticleFromResults(results, event.target.key))
   }
