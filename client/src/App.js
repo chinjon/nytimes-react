@@ -5,6 +5,9 @@ import NotificationSystem from 'react-notification-system';
 import SearchBar from './components/SearchBar';
 import PageHeader from './components/PageHeader';
 import Results from './components/Results';
+import SavedArticles from './components/SavedArticles';
+
+import helpers from './components/utils/helpers';
 
 
 import {KEY} from './hide';
@@ -26,7 +29,8 @@ const style = {
     height: "50px",
     textAlign: "center",
     backgroundColor: "#eee",
-    lineHeight: '3em'
+    lineHeight: '3em',
+    zIndex: "100"
   }
 }
 
@@ -38,7 +42,8 @@ class App extends Component {
     this.state = {
       results: [],
       query: "",
-      _notificationSystem: null
+      _notificationSystem: null,
+      savedArticles: [],
     }
   }
 
@@ -50,6 +55,12 @@ class App extends Component {
       level: 'error',
       position: 'tr'
     })
+  }
+
+  loadSavedArticles() {
+        helpers.loadSavedArticles()
+        .then(savedArticles => this.setState({savedArticles}))
+        .catch(err=> console.log(err))
   }
 
   searchNYTimes(query) {
@@ -75,7 +86,20 @@ class App extends Component {
   }
 
   onArticleSave = event => {
+      event.preventDefault();
+      console.log(event.target.key)
+      // const {results} = this.state;
+      // console.log(this.filterArticleFromResults(results, event.target.key))
+  }
 
+  filterArticleFromResults(data, selectedArticleId) {
+    return data.filter(e => {
+      return e._id === selectedArticleId;
+    })
+  }
+
+  componentWillMount() {
+    this.loadSavedArticles();
   }
 
   componentDidMount() {
@@ -105,8 +129,11 @@ class App extends Component {
         { results ? 
           <Results 
             results={results}
+            onArticleSave={this.onArticleSave.bind(this)}
           /> : 
           null }
+
+          <SavedArticles />
           <div style={style.footer}>
             <p>Built with coffee and anxiety by <a target="_blank" href="https://github.com/chinjon/nytimes-react">Jonathan Chin</a></p>
           </div>
