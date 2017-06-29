@@ -28,8 +28,9 @@ const Results = (props) => {
 
         return (
             <Container style={style.base}>
-                <Item.Group divided>        
-                        {items}                  
+                <Item.Group divided>
+                    {items.length > 0 ?                     <h1>Search Results</h1> : null}
+                    {items}                  
                 </Item.Group>
             </Container>
         )

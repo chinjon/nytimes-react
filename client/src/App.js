@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Divider } from 'semantic-ui-react';
 import Radium from 'radium';
 import NotificationSystem from 'react-notification-system';
 
@@ -31,6 +32,10 @@ const style = {
     backgroundColor: "#eee",
     lineHeight: '3em',
     zIndex: "100"
+  },
+  divider: {
+    width: '60%',
+    margin: '5rem auto'
   }
 }
 
@@ -133,6 +138,9 @@ class App extends Component {
           onSearchQueryChange={this.onQueryChange.bind(this)} 
           onSearchQuerySubmit={this.onSearchSubmit.bind(this)}
         />
+
+        <Divider style={style.divider} />
+
         <NotificationSystem ref="notificationSystem" />
         { results ? 
           <Results 
@@ -140,6 +148,8 @@ class App extends Component {
             onArticleSave={this.onArticleSave}
           /> : 
           null }
+
+          <Divider style={style.divider} />
 
           <SavedArticles savedArticles={savedArticles} />
           <div style={style.footer}>

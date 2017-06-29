@@ -7,7 +7,7 @@ import Radium from 'radium';
 const styles = {
     base: {
         display: 'inline-block',
-        margin: '0 0 3rem 0',
+        margin: '1rem 0 3rem 0',
         width: '100%'
     }
 }

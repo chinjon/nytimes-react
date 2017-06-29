@@ -6,9 +6,9 @@ import SavedItem from './grandchildren/SavedItem';
 
 const styles = {
     base: {
-        margin: "4em 0 10em 0",
+        margin: "1em 0 10em 0",
         padding: "1em",
-        width: "55%"
+        width: "50%"
     },
     group: {
         margin: '0 auto',
@@ -30,6 +30,7 @@ const SavedArticles = (props) => {
     return (
         <Container style={styles.base}>
             <Item.Group style={styles.group}>
+                <h1>Saved Articles</h1>
                 {renderSavedItems}
             </Item.Group>
         </Container>
