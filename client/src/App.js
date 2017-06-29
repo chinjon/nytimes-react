@@ -57,6 +57,15 @@ class App extends Component {
     })
   }
 
+  savedArticleNotification = () => {
+    this.notificationSystem.addNotification({
+      message: 'Item has been saved',
+      title: 'SUCCESS',
+      level: 'success',
+      position: 'tr'
+    });
+  }
+
   loadSavedArticles() {
         helpers.loadSavedArticles()
         .then(savedArticles => this.setState({savedArticles}))
@@ -92,7 +101,6 @@ class App extends Component {
       function matchArticle(article) {
         return article._id === id;
       }
-      // console.log(this.extractArticleElements(results.find(matchArticle)));
 
       helpers.saveArticle(this.extractArticleElements(results.find(matchArticle)));
   }
@@ -117,7 +125,7 @@ class App extends Component {
 
 
   render() {
-    const {results} = this.state
+    const {results, savedArticles} = this.state
     return (
       <div style={style.base}>
         <PageHeader />
@@ -133,7 +141,7 @@ class App extends Component {
           /> : 
           null }
 
-          <SavedArticles />
+          <SavedArticles savedArticles={savedArticles} />
           <div style={style.footer}>
             <p>Built with coffee and anxiety by <a target="_blank" href="https://github.com/chinjon/nytimes-react">Jonathan Chin</a></p>
           </div>

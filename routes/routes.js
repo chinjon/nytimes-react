@@ -17,7 +17,7 @@ routes.get("/api/articles", (req, res) => {
 
 routes.post("/api/articles", (req, res) => {
     let article = new Article({
-        articleId: req.body.id,
+        articleId: req.body.articleId,
         title: req.body.title,
         url: req.body.url,
         description: req.body.description,
