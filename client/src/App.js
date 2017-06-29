@@ -85,9 +85,8 @@ class App extends Component {
     query ? this.searchNYTimes(query) : this.noTermEnteredNotification(event)
   }
 
-  onArticleSave = event => {
-      event.preventDefault();
-      console.log(event.target.key)
+  onArticleSave = () => {
+      console.log('onArticleSave Running')
       // const {results} = this.state;
       // console.log(this.filterArticleFromResults(results, event.target.key))
   }
@@ -106,15 +105,6 @@ class App extends Component {
     this._notificationSystem = this.refs.notificationSystem;
   }
 
-  doesLocalStorageContain() {
-    const stash = JSON.parse(localStorage.getItem("nytStash"));
-
-    if(stash) {
-      console.log("Has items")
-    } else {
-      console.log("Empty")
-    }
-  }
 
   render() {
     const {results} = this.state
@@ -129,7 +119,7 @@ class App extends Component {
         { results ? 
           <Results 
             results={results}
-            onArticleSave={this.onArticleSave.bind(this)}
+            onArticleSave={this.onArticleSave}
           /> : 
           null }
 
