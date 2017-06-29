@@ -57,6 +57,15 @@ class App extends Component {
     })
   }
 
+  savedArticleNotification = () => {
+    this.notificationSystem.addNotification({
+      message: 'Item has been saved',
+      title: 'SUCCESS',
+      level: 'success',
+      position: 'tr'
+    });
+  }
+
   loadSavedArticles() {
         helpers.loadSavedArticles()
         .then(savedArticles => this.setState({savedArticles}))
@@ -85,17 +94,25 @@ class App extends Component {
     query ? this.searchNYTimes(query) : this.noTermEnteredNotification(event)
   }
 
-  onArticleSave = event => {
-      event.preventDefault();
-      console.log(event.target.key)
-      // const {results} = this.state;
-      // console.log(this.filterArticleFromResults(results, event.target.key))
+  onArticleSave = (id) => {
+      const {results} = this.state;
+      console.log('onArticleSave Running',id)
+
+      function matchArticle(article) {
+        return article._id === id;
+      }
+
+      helpers.saveArticle(this.extractArticleElements(results.find(matchArticle)));
   }
 
-  filterArticleFromResults(data, selectedArticleId) {
-    return data.filter(e => {
-      return e._id === selectedArticleId;
-    })
+  extractArticleElements(article) {
+    return {
+      articleId: article._id,
+      title: article.headline.main,
+      url: article.web_url,
+      multimedia: article.multimedia[1].url,
+      description: article.snippet,
+    }
   }
 
   componentWillMount() {
@@ -106,18 +123,9 @@ class App extends Component {
     this._notificationSystem = this.refs.notificationSystem;
   }
 
-  doesLocalStorageContain() {
-    const stash = JSON.parse(localStorage.getItem("nytStash"));
-
-    if(stash) {
-      console.log("Has items")
-    } else {
-      console.log("Empty")
-    }
-  }
 
   render() {
-    const {results} = this.state
+    const {results, savedArticles} = this.state
     return (
       <div style={style.base}>
         <PageHeader />
@@ -129,11 +137,11 @@ class App extends Component {
         { results ? 
           <Results 
             results={results}
-            onArticleSave={this.onArticleSave.bind(this)}
+            onArticleSave={this.onArticleSave}
           /> : 
           null }
 
-          <SavedArticles />
+          <SavedArticles savedArticles={savedArticles} />
           <div style={style.footer}>
             <p>Built with coffee and anxiety by <a target="_blank" href="https://github.com/chinjon/nytimes-react">Jonathan Chin</a></p>
           </div>

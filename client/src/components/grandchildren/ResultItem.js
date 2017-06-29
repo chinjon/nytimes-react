@@ -7,6 +7,11 @@ const noImgPlaceholder = "https://placeholdit.imgix.net/~text?txtsize=26&txt=No+
 const imgNYTParse = 'https://static01.nyt.com/'
 
 const ResultItem = ({item, onClick}) => {
+
+    function handleClick(id) {
+        onClick(id);
+    }
+
     return (
         <Item key={item._id}>
             <Item.Image 
@@ -36,7 +41,7 @@ const ResultItem = ({item, onClick}) => {
                         size="medium"
                         animated="vertical"
                         key={item._id}
-                        onClick={onClick}
+                        onClick={(event) => handleClick(item._id)}
                     >
                         <Button.Content hidden>
                             Save

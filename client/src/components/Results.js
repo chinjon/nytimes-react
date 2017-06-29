@@ -3,6 +3,7 @@ import {Item, Container} from 'semantic-ui-react';
 import Radium from 'radium';
 
 import ResultItem from './grandchildren/ResultItem';
+// import { helpers } from './utils/helpers'
 
 const style = {
     base: {
@@ -12,21 +13,15 @@ const style = {
     }
 }
 
-
 const Results = (props) => {
 
-        const saveArticle = (event) => {
-            event.preventDefault();
-
-            console.log('clicking');
-        }
 
         const items = props.results.map(item => {
             return (
                 <ResultItem     
                     item={item}
                     key={item._id}
-                    onClick={saveArticle.bind(this)}
+                    onClick={props.onArticleSave}
                 />
             )
         })

@@ -15,15 +15,15 @@ const helpers = {
         });
     },
 
-    saveArticle: () => {
+    saveArticle: (article) => {
         console.log('saveArticle is running');
 
         return new Promise((resolve, reject) => {
-            axios.post('/api/articles').then(res => {
+            axios.post('/api/articles', article).then(res => {
                 console.log('saving article');
                 resolve(res.data);
             }).then((response) => console.log(response))
-            .catch((error) => console.log(error));
+            .catch((error) => reject(error.response.data));
         })
     }
 
