@@ -17,9 +17,11 @@ routes.get("/api/articles", (req, res) => {
 
 routes.post("/api/articles", (req, res) => {
     let article = new Article({
+        articleId: req.body.id,
         title: req.body.title,
         url: req.body.url,
-        description: req.body.description
+        description: req.body.description,
+        multimedia: req.body.multimedia
     });
 
     article.save().then((item) => {

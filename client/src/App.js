@@ -86,26 +86,26 @@ class App extends Component {
   }
 
   onArticleSave = (id) => {
-      // const {results} = this.state;
-      // console.log(this.filterArticleFromResults(results, event.target.key))
+      const {results} = this.state;
       console.log('onArticleSave Running',id)
-      // console.log(this.state.results);
-      // console.log(this.matchArticleToSave(this.state.results))
 
       function matchArticle(article) {
         return article._id === id;
       }
-      console.log(this.state.results.find(matchArticle));
+      // console.log(this.extractArticleElements(results.find(matchArticle)));
+
+      helpers.saveArticle(this.extractArticleElements(results.find(matchArticle)));
   }
 
-  // filterArticle = (article, matchId) => {
-  //   return article._id === matchId;
-  // } 
-
-  // matchArticleToSave = (arrArticles,id) => {
-  //   arrArticles.find(this.filterArticle(id))
-  // }
-
+  extractArticleElements(article) {
+    return {
+      articleId: article._id,
+      title: article.headline.main,
+      url: article.web_url,
+      multimedia: article.multimedia[1].url,
+      description: article.snippet,
+    }
+  }
 
   componentWillMount() {
     this.loadSavedArticles();
