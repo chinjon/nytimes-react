@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Divider } from 'semantic-ui-react';
 import Radium from 'radium';
 import NotificationSystem from 'react-notification-system';
 
@@ -14,7 +15,9 @@ import {KEY} from './hide';
 
 const style = {
   base: {
-    margin: "2em 0 0 0"
+    margin: "0 0 0 0",
+    padding: "3rem 0",
+    backgroundColor: "#e5e5e5"
   },
   resultsList: {
     margin: "5em 0 0 0",
@@ -31,6 +34,10 @@ const style = {
     backgroundColor: "#eee",
     lineHeight: '3em',
     zIndex: "100"
+  },
+  divider: {
+    width: '60%',
+    margin: '3rem auto'
   }
 }
 
@@ -89,7 +96,7 @@ class App extends Component {
   onSearchSubmit = event =>{
     const {query} = this.state;
     this.setState({
-      results: []
+      results: [],
     })
     query ? this.searchNYTimes(query) : this.noTermEnteredNotification(event)
   }
@@ -103,6 +110,8 @@ class App extends Component {
       }
 
       helpers.saveArticle(this.extractArticleElements(results.find(matchArticle)));
+
+      this.loadSavedArticles();
   }
 
   extractArticleElements(article) {
@@ -133,13 +142,18 @@ class App extends Component {
           onSearchQueryChange={this.onQueryChange.bind(this)} 
           onSearchQuerySubmit={this.onSearchSubmit.bind(this)}
         />
+
         <NotificationSystem ref="notificationSystem" />
         { results ? 
+          <div>
+          <Divider style={style.divider} />
           <Results 
             results={results}
             onArticleSave={this.onArticleSave}
-          /> : 
+          /></div>: 
           null }
+
+          <Divider style={style.divider} />
 
           <SavedArticles savedArticles={savedArticles} />
           <div style={style.footer}>
