@@ -31,7 +31,7 @@ const Results = (props) => {
         return (
             <Container style={style.base}>
                 <Item.Group>
-                    {items.length > 0 ? <h1>Search Results</h1> : null}
+                    {items.length > 0 ? <h1>Search Results for <em>{props.searchTerm}</em></h1> : null}
 
                     <FlipMove duration={250} easing="ease-in">    
                         {items}                  

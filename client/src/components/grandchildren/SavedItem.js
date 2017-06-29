@@ -1,5 +1,5 @@
 import React from 'react';
-import {Item, Button, Icon} from 'semantic-ui-react';
+import {Item, Icon} from 'semantic-ui-react';
 import Radium from 'radium';
 
 // const imgNYTParse = 'https://static01.nyt.com/'

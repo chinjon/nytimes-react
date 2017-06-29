@@ -134,7 +134,7 @@ class App extends Component {
 
 
   render() {
-    const {results, savedArticles} = this.state
+    const { results, savedArticles, query } = this.state
     return (
       <div style={style.base}>
         <PageHeader />
@@ -149,6 +149,7 @@ class App extends Component {
           <Divider style={style.divider} />
           <Results 
             results={results}
+            searchTerm={query}
             onArticleSave={this.onArticleSave}
           /></div>: 
           null }
