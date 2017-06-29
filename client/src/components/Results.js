@@ -1,15 +1,17 @@
 import React from 'react';
 import {Item, Container} from 'semantic-ui-react';
 import Radium from 'radium';
+import FlipMove from 'react-flip-move';
 
 import ResultItem from './grandchildren/ResultItem';
 // import { helpers } from './utils/helpers'
 
 const style = {
     base: {
-        margin: "4em 0 7em 0",
-        padding: "1em",
-        width: "55%"
+        margin: "4em 0 5em 0",
+        padding: "1rem 1rem 3rem 1rem",
+        width: "65%",
+        height: "auto"
     }
 }
 
@@ -28,9 +30,12 @@ const Results = (props) => {
 
         return (
             <Container style={style.base}>
-                <Item.Group divided>
-                    {items.length > 0 ?                     <h1>Search Results</h1> : null}
-                    {items}                  
+                <Item.Group>
+                    {items.length > 0 ? <h1>Search Results</h1> : null}
+
+                    <FlipMove duration={250} easing="ease-in">    
+                        {items}                  
+                    </FlipMove>
                 </Item.Group>
             </Container>
         )

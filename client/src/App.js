@@ -15,7 +15,9 @@ import {KEY} from './hide';
 
 const style = {
   base: {
-    margin: "2em 0 0 0"
+    margin: "0 0 0 0",
+    padding: "3rem 0",
+    backgroundColor: "#e5e5e5"
   },
   resultsList: {
     margin: "5em 0 0 0",
@@ -35,7 +37,7 @@ const style = {
   },
   divider: {
     width: '60%',
-    margin: '5rem auto'
+    margin: '3rem auto'
   }
 }
 
@@ -94,7 +96,7 @@ class App extends Component {
   onSearchSubmit = event =>{
     const {query} = this.state;
     this.setState({
-      results: []
+      results: [],
     })
     query ? this.searchNYTimes(query) : this.noTermEnteredNotification(event)
   }
@@ -108,6 +110,8 @@ class App extends Component {
       }
 
       helpers.saveArticle(this.extractArticleElements(results.find(matchArticle)));
+
+      this.loadSavedArticles();
   }
 
   extractArticleElements(article) {
@@ -139,14 +143,14 @@ class App extends Component {
           onSearchQuerySubmit={this.onSearchSubmit.bind(this)}
         />
 
-        <Divider style={style.divider} />
-
         <NotificationSystem ref="notificationSystem" />
         { results ? 
+          <div>
+          <Divider style={style.divider} />
           <Results 
             results={results}
             onArticleSave={this.onArticleSave}
-          /> : 
+          /></div>: 
           null }
 
           <Divider style={style.divider} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Item, Container } from 'semantic-ui-react';
 import Radium from 'radium';
-
+import FlipMove from 'react-flip-move';
 import SavedItem from './grandchildren/SavedItem';
 
 const styles = {
@@ -31,7 +31,9 @@ const SavedArticles = (props) => {
         <Container style={styles.base}>
             <Item.Group style={styles.group}>
                 <h1>Saved Articles</h1>
-                {renderSavedItems}
+                <FlipMove duration={350} easing="ease-in">
+                    {renderSavedItems}
+                </FlipMove>
             </Item.Group>
         </Container>
     )
