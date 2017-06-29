@@ -8,8 +8,8 @@ const imgNYTParse = 'https://static01.nyt.com/'
 
 const ResultItem = ({item, onClick}) => {
 
-    function handleClick() {
-        onClick();
+    function handleClick(id) {
+        onClick(id);
     }
 
     return (
@@ -41,7 +41,7 @@ const ResultItem = ({item, onClick}) => {
                         size="medium"
                         animated="vertical"
                         key={item._id}
-                        onClick={handleClick.bind(this)}
+                        onClick={(event) => handleClick(item._id)}
                     >
                         <Button.Content hidden>
                             Save

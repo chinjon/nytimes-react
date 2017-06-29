@@ -85,17 +85,27 @@ class App extends Component {
     query ? this.searchNYTimes(query) : this.noTermEnteredNotification(event)
   }
 
-  onArticleSave = () => {
-      console.log('onArticleSave Running')
+  onArticleSave = (id) => {
       // const {results} = this.state;
       // console.log(this.filterArticleFromResults(results, event.target.key))
+      console.log('onArticleSave Running',id)
+      // console.log(this.state.results);
+      // console.log(this.matchArticleToSave(this.state.results))
+
+      function matchArticle(article) {
+        return article._id === id;
+      }
+      console.log(this.state.results.find(matchArticle));
   }
 
-  filterArticleFromResults(data, selectedArticleId) {
-    return data.filter(e => {
-      return e._id === selectedArticleId;
-    })
-  }
+  // filterArticle = (article, matchId) => {
+  //   return article._id === matchId;
+  // } 
+
+  // matchArticleToSave = (arrArticles,id) => {
+  //   arrArticles.find(this.filterArticle(id))
+  // }
+
 
   componentWillMount() {
     this.loadSavedArticles();
