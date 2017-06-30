@@ -15,7 +15,7 @@ const styles = {
     }
 }
 
-const SavedItem = ({item}) => {
+const SavedArticle = ({item}) => {
     return (
         <Item key={item._id} style={styles.base}>
              <Item.Content>
@@ -24,7 +24,6 @@ const SavedItem = ({item}) => {
                     {item.title}
                     </a>
                 </Item.Header>
-                <Item.Description></Item.Description>
                 <Item.Extra>
                     <Icon color="green" name='check' /> {item.upvotes} Upvotes
                     &nbsp;&nbsp;&nbsp;
@@ -36,4 +35,4 @@ const SavedItem = ({item}) => {
     )
 }
 
-export default Radium(SavedItem);
+export default Radium(SavedArticle);
