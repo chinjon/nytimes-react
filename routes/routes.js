@@ -32,13 +32,13 @@ routes.post("/api/articles", (req, res) => {
 });
 
 routes.delete("/api/articles/:id", (req, res) => {
-    let articleId = req.params.articleId;
+    let articleId = req.params.id;
 
     if(!ObjectID.isValid(articleId)) {
         return res.status(404).send();
     };
 
-    Article.findByIdAndRemove(articleId).then((article) => {
+    Article.findOneAndRemove({articleId}).then((article) => {
         if(!article) {
            return res.status(404).send();
         }
