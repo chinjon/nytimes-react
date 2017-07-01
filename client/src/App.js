@@ -26,6 +26,7 @@ const style = {
   footer: {
     position: "fixed",
     bottom: "0",
+    right: "0",
     left: "0",
     paddingTop: '1em',
     width: "100%",
@@ -81,6 +82,12 @@ class App extends Component {
 
   deleteSavedArticle() {
     
+  }
+
+  onDeleteClick = (articleId) => {
+    console.log('onDelete is running', articleId);
+    helpers.deleteSavedArticle(articleId);
+    this.setState({savedArticles: this.loadSavedArticles()})
   }
 
   searchNYTimes(query) {
@@ -141,26 +148,30 @@ class App extends Component {
     const { results, savedArticles, query } = this.state
     return (
       <div style={style.base}>
-        <PageHeader />
-        <SearchBar 
-          onSearchQueryChange={this.onQueryChange.bind(this)} 
-          onSearchQuerySubmit={this.onSearchSubmit.bind(this)}
-        />
+        <div>
+          <PageHeader />
+          <SearchBar 
+            onSearchQueryChange={this.onQueryChange.bind(this)} 
+            onSearchQuerySubmit={this.onSearchSubmit.bind(this)}
+          />
 
-        <NotificationSystem ref="notificationSystem" />
-        { results ? 
-          <div>
-          <Divider style={style.divider} />
-          <Results 
-            results={results}
-            searchTerm={query}
-            onArticleSave={this.onArticleSave}
-          /></div>: 
-          null }
+          <NotificationSystem ref="notificationSystem" />
+          { results ? 
+            <div>
+            <Divider style={style.divider} />
+            <Results 
+              results={results}
+              searchTerm={query}
+              onArticleSave={this.onArticleSave}
+            /></div>: 
+            null }
 
-          <Divider style={style.divider} />
+            <Divider style={style.divider} />
 
-          <SavedArticles savedArticles={savedArticles} />
+            <SavedArticles 
+              onDeleteClick={this.onDeleteClick}
+              savedArticles={savedArticles} />
+          </div>
           <div style={style.footer}>
             <p>Built with coffee and anxiety by <a target="_blank" href="https://github.com/chinjon/nytimes-react">Jonathan Chin</a></p>
           </div>

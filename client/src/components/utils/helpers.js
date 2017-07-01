@@ -31,7 +31,7 @@ const helpers = {
         console.log('deletedSavedArticle running');
 
         return new Promise((resolve, reject) => {
-            axios.delete('/api/articles/:id', articleId).then(res => {
+            axios.delete(`/api/articles/${articleId}`).then(res => {
                 console.log('deleted article');
                 resolve(res.data);
             }).then((response) => console.log(response)).catch((error) => reject(error.response.data))
