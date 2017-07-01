@@ -17,7 +17,7 @@ const style = {
   base: {
     margin: "0 0 0 0",
     padding: "3rem 0",
-    backgroundColor: "#e5e5e5"
+    backgroundColor: "#fff"
   },
   resultsList: {
     margin: "5em 0 0 0",
@@ -74,9 +74,13 @@ class App extends Component {
   }
 
   loadSavedArticles() {
-        helpers.loadSavedArticles()
-        .then(savedArticles => this.setState({savedArticles}))
-        .catch(err=> console.log(err))
+    helpers.loadSavedArticles()
+    .then(savedArticles => this.setState({savedArticles}))
+    .catch(err=> console.log(err))
+  }
+
+  deleteSavedArticle() {
+    
   }
 
   searchNYTimes(query) {
@@ -134,7 +138,7 @@ class App extends Component {
 
 
   render() {
-    const {results, savedArticles} = this.state
+    const { results, savedArticles, query } = this.state
     return (
       <div style={style.base}>
         <PageHeader />
@@ -149,6 +153,7 @@ class App extends Component {
           <Divider style={style.divider} />
           <Results 
             results={results}
+            searchTerm={query}
             onArticleSave={this.onArticleSave}
           /></div>: 
           null }

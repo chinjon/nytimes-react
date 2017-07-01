@@ -11,11 +11,14 @@ const styles = {
         width: '100%',
         backgroundColor: "#fff",
         padding: "3rem",
-        border: "1px solid #ddd"
+        border: "1px solid #000"
+    },
+    extra: {
+        marginTop: "1rem"
     }
 }
 
-const SavedItem = ({item}) => {
+const SavedArticle = ({item}) => {
     return (
         <Item key={item._id} style={styles.base}>
              <Item.Content>
@@ -24,16 +27,17 @@ const SavedItem = ({item}) => {
                     {item.title}
                     </a>
                 </Item.Header>
-                <Item.Description></Item.Description>
-                <Item.Extra>
+                <Item.Extra style={styles.extra}>
                     <Icon color="green" name='check' /> {item.upvotes} Upvotes
                     &nbsp;&nbsp;&nbsp;
                     <Icon color='red' name='minus' />
                     {item.downvotes} Downvotes
+
+                    <Button floated="right" size="mini">Delete</Button>
                 </Item.Extra>
             </Item.Content>
         </Item>
     )
 }
 
-export default Radium(SavedItem);
+export default Radium(SavedArticle);

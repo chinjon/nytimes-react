@@ -2,15 +2,22 @@ import React from 'react';
 import { Item, Button, Icon } from 'semantic-ui-react';
 import Radium from 'radium';
 
-const noImgPlaceholder = "https://placeholdit.imgix.net/~text?txtsize=26&txt=No+Image+Found&w=150&h=150&txttrack=0"
+// const noImgPlaceholder = "https://placeholdit.imgix.net/~text?txtsize=26&txt=No+Image+Found&w=150&h=150&txttrack=0"
 
-const imgNYTParse = 'https://static01.nyt.com/'
+// const imgNYTParse = 'https://static01.nyt.com/'
 
 const styles = {
     base: {
-        padding: "2.5rem",
+        padding: "1rem",
         backgroundColor: "#fff",
-        marginBottom: "1rem"
+        marginBottom: "1rem",
+        border: "1px solid #000"
+    },
+    content: {
+        padding: "2rem"
+    },
+    extra: {
+        marginTop: "1rem"
     }
 }
 
@@ -23,14 +30,7 @@ const ResultItem = ({item, onClick}) => {
 
     return (
         <Item key={item._id} style={styles.base}>
-            <Item.Image 
-                src={item.multimedia.length > 0 ? 
-                    `${imgNYTParse}${item.multimedia[1].url}` :
-                    noImgPlaceholder
-                }
-                size="small"
-            />
-            <Item.Content>
+            <Item.Content style={styles.content}>
                 <Item.Header>
                     <a 
                         href={item.web_url}
@@ -39,10 +39,7 @@ const ResultItem = ({item, onClick}) => {
                         {item.headline.main}
                     </a>
                 </Item.Header>
-                <Item.Description>
-                    {item.snippet}
-                </Item.Description>
-                <Item.Extra>
+                <Item.Extra style={styles.extra}>
                     <Button 
                         color="teal"
                         compact 

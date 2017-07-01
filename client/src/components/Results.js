@@ -8,10 +8,13 @@ import ResultItem from './grandchildren/ResultItem';
 
 const style = {
     base: {
-        margin: "4em 0 5em 0",
-        padding: "1rem 1rem 3rem 1rem",
-        width: "65%",
+        margin: "3em 0 3em 0",
+        padding: "1rem",
+        width: "50%",
         height: "auto"
+    },
+    searchText: {
+        textAlign: "center"
     }
 }
 
@@ -31,7 +34,7 @@ const Results = (props) => {
         return (
             <Container style={style.base}>
                 <Item.Group>
-                    {items.length > 0 ? <h1>Search Results</h1> : null}
+                    {items.length > 0 ? <h1>Search Results for <em>{props.searchTerm}</em></h1> : <p style={style.searchText}>Search For Something...</p>}
 
                     <FlipMove duration={250} easing="ease-in">    
                         {items}                  
