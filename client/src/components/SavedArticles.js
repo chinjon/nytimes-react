@@ -12,7 +12,6 @@ const styles = {
     },
     group: {
         margin: '0 auto',
-        display: 'inline-block',
     },
     noSavedYetMessage: {
         textAlign: 'center'
@@ -26,6 +25,7 @@ const SavedArticles = (props) => {
             <SavedArticle 
                 item={item}
                 key={item._id}
+                onClick={props.onDeleteClick}
             />
         )
     })
@@ -33,7 +33,7 @@ const SavedArticles = (props) => {
     return (
         <Container style={styles.base}>
             <Item.Group style={styles.group}>
-                <h1>Saved Articles</h1>
+                {props.savedArticles.length > 0 ?<h1>Saved Articles</h1> : null}
                 <FlipMove duration={350} easing="ease-in">
                     {props.savedArticles.length > 0 ?renderSavedItems : <p style={styles.noSavedYetMessage}>No saved articles yet...</p>}
                 </FlipMove>

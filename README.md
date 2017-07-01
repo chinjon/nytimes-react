@@ -27,3 +27,4 @@ A search application using the NYTimes Search API and ReactJS with data persiste
 - [x] Set routes for CRUD operations.
 - [x] Implement READ operations from DB to frontend.
 - [ ] Implement DELETE operations.
+- [ ] Create client-side error handling for users.

@@ -18,9 +18,14 @@ const styles = {
     }
 }
 
-const SavedArticle = ({item}) => {
+const SavedArticle = ({item, onClick}) => {
+
+    function handleClick(articleId) {
+        onClick(articleId);
+    }
+
     return (
-        <Item key={item._id} style={styles.base}>
+        <Item key={item.articleId} style={styles.base}>
              <Item.Content>
                 <Item.Header>
                     <a href={item.url} target="_blank">
@@ -33,7 +38,7 @@ const SavedArticle = ({item}) => {
                     <Icon color='red' name='minus' />
                     {item.downvotes} Downvotes
 
-                    <Button floated="right" size="mini">Delete</Button>
+                    <Button floated="right" size="mini" key={item.articleId} onClick={(event) => handleClick(item.articleId)}>Delete</Button>
                 </Item.Extra>
             </Item.Content>
         </Item>
