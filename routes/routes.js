@@ -32,7 +32,7 @@ routes.post("/api/articles", (req, res) => {
 });
 
 routes.delete("/api/articles/:id", (req, res) => {
-    let articleId = req.params.id;
+    let articleId = req.params.articleId;
 
     if(!ObjectID.isValid(articleId)) {
         return res.status(404).send();
@@ -50,7 +50,7 @@ routes.delete("/api/articles/:id", (req, res) => {
 
 routes.patch('/api/articles/:action/:id', (req, res) => {
     let action = req.params.action;
-    let articleId = req.params.id;
+    let articleId = req.params.articleId;
 
     if(!ObjectID.isValid(articleId)) {
         return res.status(404).send();

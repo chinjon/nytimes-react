@@ -1,5 +1,5 @@
 import React from 'react';
-import {Item, Icon} from 'semantic-ui-react';
+import {Item, Button, Icon} from 'semantic-ui-react';
 import Radium from 'radium';
 
 // const imgNYTParse = 'https://static01.nyt.com/'
@@ -11,7 +11,10 @@ const styles = {
         width: '100%',
         backgroundColor: "#fff",
         padding: "3rem",
-        border: "1px solid #ddd"
+        border: "1px solid #000"
+    },
+    extra: {
+        marginTop: "1rem"
     }
 }
 
@@ -24,11 +27,13 @@ const SavedArticle = ({item}) => {
                     {item.title}
                     </a>
                 </Item.Header>
-                <Item.Extra>
+                <Item.Extra style={styles.extra}>
                     <Icon color="green" name='check' /> {item.upvotes} Upvotes
                     &nbsp;&nbsp;&nbsp;
                     <Icon color='red' name='minus' />
                     {item.downvotes} Downvotes
+
+                    <Button floated="right" size="mini">Delete</Button>
                 </Item.Extra>
             </Item.Content>
         </Item>

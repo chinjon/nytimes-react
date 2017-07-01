@@ -13,6 +13,9 @@ const styles = {
     group: {
         margin: '0 auto',
         display: 'inline-block',
+    },
+    noSavedYetMessage: {
+        textAlign: 'center'
     }
 }
 
@@ -32,7 +35,7 @@ const SavedArticles = (props) => {
             <Item.Group style={styles.group}>
                 <h1>Saved Articles</h1>
                 <FlipMove duration={350} easing="ease-in">
-                    {renderSavedItems}
+                    {props.savedArticles.length > 0 ?renderSavedItems : <p style={styles.noSavedYetMessage}>No saved articles yet...</p>}
                 </FlipMove>
             </Item.Group>
         </Container>

@@ -10,7 +10,7 @@ const style = {
     base: {
         margin: "3em 0 3em 0",
         padding: "1rem",
-        width: "55%",
+        width: "50%",
         height: "auto"
     },
     searchText: {

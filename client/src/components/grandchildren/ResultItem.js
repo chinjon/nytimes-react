@@ -10,7 +10,8 @@ const styles = {
     base: {
         padding: "1rem",
         backgroundColor: "#fff",
-        marginBottom: "1rem"
+        marginBottom: "1rem",
+        border: "1px solid #000"
     },
     content: {
         padding: "2rem"
