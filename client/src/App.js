@@ -42,7 +42,6 @@ const style = {
   }
 }
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -78,10 +77,6 @@ class App extends Component {
     helpers.loadSavedArticles()
     .then(savedArticles => this.setState({savedArticles}))
     .catch(err=> console.log(err))
-  }
-
-  deleteSavedArticle() {
-    
   }
 
   onDeleteClick = (articleId) => {
@@ -135,6 +130,10 @@ class App extends Component {
     }
   }
 
+  addUpvote(id) {
+    console.log('upvote is working');
+  }
+
   componentWillMount() {
     this.loadSavedArticles();
   }
@@ -150,27 +149,28 @@ class App extends Component {
       <div style={style.base}>
         <div>
           <PageHeader />
-          <SearchBar 
-            onSearchQueryChange={this.onQueryChange.bind(this)} 
+          <SearchBar
+            onSearchQueryChange={this.onQueryChange.bind(this)}
             onSearchQuerySubmit={this.onSearchSubmit.bind(this)}
           />
 
           <NotificationSystem ref="notificationSystem" />
-          { results ? 
+          { results ?
             <div>
             <Divider style={style.divider} />
-            <Results 
+            <Results
               results={results}
               searchTerm={query}
               onArticleSave={this.onArticleSave}
-            /></div>: 
+            /></div>:
             null }
 
             <Divider style={style.divider} />
 
-            <SavedArticles 
-              onDeleteClick={this.onDeleteClick}
-              savedArticles={savedArticles} />
+            <SavedArticles
+              onDeleteClick={this.onDeleteClick.bind(this)}
+              savedArticles={savedArticles}
+              upvoting={this.addUpvote}/>
           </div>
           <div style={style.footer}>
             <p>Built with coffee and anxiety by <a target="_blank" href="https://github.com/chinjon/nytimes-react">Jonathan Chin</a></p>

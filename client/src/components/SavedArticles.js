@@ -22,7 +22,7 @@ const SavedArticles = (props) => {
 
     const renderSavedItems = props.savedArticles.map(item => {
         return (
-            <SavedArticle 
+            <SavedArticle
                 item={item}
                 key={item._id}
                 onClick={props.onDeleteClick}

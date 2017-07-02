@@ -24,7 +24,7 @@ const helpers = {
                     resolve(res.data);
                 }).then((response) => console.log(response))
                 .catch((error) => reject(error.response.data));
-        })
+        });
     },
 
     deleteSavedArticle: (articleId) => {
@@ -35,7 +35,18 @@ const helpers = {
                 console.log('deleted article');
                 resolve(res.data);
             }).then((response) => console.log(response)).catch((error) => reject(error.response.data))
-        })
+        });
+    },
+
+    addUpvote: (articleId) => {
+        console.log('upvote running');
+
+        return new Promise((resolve, reject) => {
+            axios.patch(`/api/articles/upvote/${articleId}`).then(res => {
+                console.log('article upvoted');
+                resolve(res.data);
+            }).then(response => console.log(response)).catch(error=> reject(error.response.data))
+        });
     }
 
 }
