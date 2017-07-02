@@ -3,15 +3,11 @@ import axios from 'axios';
 const helpers = {
 
     loadSavedArticles: () => {
-        console.log('loadSavedArticles is running');
-
         return new Promise((resolve, reject) => {
             axios.get('/api/articles').then(res => {
-                    console.log('getting articles')
-                    console.log(res.data);
                     resolve(res.data);
-                }).then((response) => console.log(response))
-                .catch((error) => console.log(error));
+                }).then((res) => res)
+                .catch((error) => reject(error.res.data));
         });
     },
 
@@ -20,11 +16,10 @@ const helpers = {
 
         return new Promise((resolve, reject) => {
             axios.post('/api/articles', article).then(res => {
-                    console.log('saving article');
                     resolve(res.data);
-                }).then((response) => console.log(response))
-                .catch((error) => reject(error.response.data));
-        })
+                }).then((res) => res)
+                .catch((error) => reject(error.res.data));
+        });
     },
 
     deleteSavedArticle: (articleId) => {
@@ -32,12 +27,26 @@ const helpers = {
 
         return new Promise((resolve, reject) => {
             axios.delete(`/api/articles/${articleId}`).then(res => {
-                console.log('deleted article');
                 resolve(res.data);
-            }).then((response) => console.log(response)).catch((error) => reject(error.response.data))
+            }).then((res) => res).catch((error) => reject(error.res.data))
+        });
+    },
+
+    addUpvote: (articleId) => {
+        return new Promise((resolve, reject) => {
+            axios.put(`/api/articles/upvote/${articleId}`).then(res => {
+                resolve(res.data);
+            }).then(res => res).catch((error)=> reject(error.res.data))
+        });
+    },
+    
+    addDownvote: (articleId) => {
+        return new Promise((resolve, reject) => {
+            axios.put(`/api/articles/downvote/${articleId}`).then(res => {
+                resolve(res.data);
+            }).then((res) => res).catch((error) => reject(error.res.data))
         })
     }
-
 }
 
 module.exports = helpers;

@@ -48,23 +48,24 @@ routes.delete("/api/articles/:id", (req, res) => {
     })
 });
 
-routes.patch('/api/articles/:action/:id', (req, res) => {
+routes.put('/api/articles/:action/:id', (req, res) => {
     let action = req.params.action;
-    let articleId = req.params.articleId;
+    let articleId = req.params.id;
 
     if(!ObjectID.isValid(articleId)) {
+        console.log('not found')
         return res.status(404).send();
     };
 
-    if(action === "upvote") {
-        Article.findByIdAndUpdate(articleId, {$inc: {upvotes: 1}}).then((article) => {
-            !article ? res.status(404).send() : res.send({article})
+    if(action.toLowerCase() === "upvote") {
+        Article.findOneAndUpdate({articleId}, {$inc: {upvotes: 1}}, {new: true}).then((article) => {
+            !article ? res.status(404).send() : res.send(article)
         }).catch(e => {
             res.status(400).send(e);
         })
-    } else if(action === "downvote") {
-        Article.findByIdAndUpdate(articleId, {$inc: {downvotes: 1}}).then((article) => {
-            !article ? res.status(404).send() : res.send({article})
+    } else if(action.toLowerCase() === "downvote") {
+        Article.findOneAndUpdate({articleId}, {$inc: {downvotes: 1}}).then((article) => {
+            !article ? res.status(404).send() : res.send(article)
         }).catch(e => {
             res.status(400).send(e);
         })

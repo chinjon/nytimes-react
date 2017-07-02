@@ -42,7 +42,6 @@ const style = {
   }
 }
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -80,12 +79,7 @@ class App extends Component {
     .catch(err=> console.log(err))
   }
 
-  deleteSavedArticle() {
-    
-  }
-
   onDeleteClick = (articleId) => {
-    console.log('onDelete is running', articleId);
     helpers.deleteSavedArticle(articleId);
     this.setState({savedArticles: this.loadSavedArticles()})
   }
@@ -114,7 +108,6 @@ class App extends Component {
 
   onArticleSave = (id) => {
       const {results} = this.state;
-      console.log('onArticleSave Running',id)
 
       function matchArticle(article) {
         return article._id === id;
@@ -135,6 +128,16 @@ class App extends Component {
     }
   }
 
+  addUpvote = (id) => {
+    helpers.addUpvote(id);
+    this.loadSavedArticles();
+  }
+
+  addDownvote = (id) => {
+    helpers.addDownvote(id);
+    this.loadSavedArticles();
+  }
+
   componentWillMount() {
     this.loadSavedArticles();
   }
@@ -150,27 +153,29 @@ class App extends Component {
       <div style={style.base}>
         <div>
           <PageHeader />
-          <SearchBar 
-            onSearchQueryChange={this.onQueryChange.bind(this)} 
+          <SearchBar
+            onSearchQueryChange={this.onQueryChange.bind(this)}
             onSearchQuerySubmit={this.onSearchSubmit.bind(this)}
           />
 
           <NotificationSystem ref="notificationSystem" />
-          { results ? 
+          { results ?
             <div>
             <Divider style={style.divider} />
-            <Results 
+            <Results
               results={results}
               searchTerm={query}
               onArticleSave={this.onArticleSave}
-            /></div>: 
+            /></div>:
             null }
 
             <Divider style={style.divider} />
 
-            <SavedArticles 
-              onDeleteClick={this.onDeleteClick}
-              savedArticles={savedArticles} />
+            <SavedArticles
+              onDeleteClick={this.onDeleteClick.bind(this)}
+              savedArticles={savedArticles}
+              upvoting={this.addUpvote}
+              downvoting={this.addDownvote}/>
           </div>
           <div style={style.footer}>
             <p>Built with coffee and anxiety by <a target="_blank" href="https://github.com/chinjon/nytimes-react">Jonathan Chin</a></p>

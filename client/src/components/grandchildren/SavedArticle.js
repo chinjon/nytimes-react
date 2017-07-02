@@ -15,13 +15,16 @@ const styles = {
     },
     extra: {
         marginTop: "1rem"
+    },
+    checkmark: {
+        cursor: 'pointer'
     }
 }
 
-const SavedArticle = ({item, onClick}) => {
+const SavedArticle = ({item, onClick, upvoting, downvoting}) => {
 
-    function handleClick(articleId) {
-        onClick(articleId);
+    function handleClick(articleId, callback) {
+        callback(articleId);
     }
 
     return (
@@ -33,12 +36,12 @@ const SavedArticle = ({item, onClick}) => {
                     </a>
                 </Item.Header>
                 <Item.Extra style={styles.extra}>
-                    <Icon color="green" name='check' /> {item.upvotes} Upvotes
+                    <Icon color="green" name='check' onClick={(event) => upvoting(item.articleId, upvoting)} style={styles.checkmark} /> {item.upvotes} Upvotes
                     &nbsp;&nbsp;&nbsp;
-                    <Icon color='red' name='minus' />
+                    <Icon color='red' name='minus' onClick={(event) => downvoting(item.articleId, downvoting)} />
                     {item.downvotes} Downvotes
 
-                    <Button floated="right" size="mini" key={item.articleId} onClick={(event) => handleClick(item.articleId)}>Delete</Button>
+                    <Button floated="right" size="mini" onClick={(event) => handleClick(item.articleId, onClick)}>Delete</Button>
                 </Item.Extra>
             </Item.Content>
         </Item>
