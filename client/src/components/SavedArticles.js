@@ -26,6 +26,7 @@ const SavedArticles = (props) => {
                 item={item}
                 key={item._id}
                 onClick={props.onDeleteClick}
+                upvoting={props.upvoting}
             />
         )
     })

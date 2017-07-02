@@ -45,7 +45,7 @@ const helpers = {
             axios.patch(`/api/articles/upvote/${articleId}`).then(res => {
                 console.log('article upvoted');
                 resolve(res.data);
-            }).then(response => console.log(response)).catch(error=> reject(error.response.data))
+            }).then((response) => console.log(response)).catch((error)=> reject(error.response.data))
         });
     }
 

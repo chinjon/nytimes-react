@@ -56,14 +56,14 @@ routes.patch('/api/articles/:action/:id', (req, res) => {
         return res.status(404).send();
     };
 
-    if(action === "upvote") {
-        Article.findByIdAndUpdate(articleId, {$inc: {upvotes: 1}}).then((article) => {
+    if(action.toLowerCase() === "upvote") {
+        Article.findOneAndUpdate({articleId}, {$inc: {upvotes: 1}}).then((article) => {
             !article ? res.status(404).send() : res.send({article})
         }).catch(e => {
             res.status(400).send(e);
         })
-    } else if(action === "downvote") {
-        Article.findByIdAndUpdate(articleId, {$inc: {downvotes: 1}}).then((article) => {
+    } else if(action.toLowerCase() === "downvote") {
+        Article.findOneAndUpdate({articleId}, {$inc: {downvotes: 1}}).then((article) => {
             !article ? res.status(404).send() : res.send({article})
         }).catch(e => {
             res.status(400).send(e);
