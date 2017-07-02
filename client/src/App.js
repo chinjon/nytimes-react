@@ -80,7 +80,6 @@ class App extends Component {
   }
 
   onDeleteClick = (articleId) => {
-    console.log('onDelete is running', articleId);
     helpers.deleteSavedArticle(articleId);
     this.setState({savedArticles: this.loadSavedArticles()})
   }
@@ -109,7 +108,6 @@ class App extends Component {
 
   onArticleSave = (id) => {
       const {results} = this.state;
-      console.log('onArticleSave Running',id)
 
       function matchArticle(article) {
         return article._id === id;
@@ -131,8 +129,12 @@ class App extends Component {
   }
 
   addUpvote = (id) => {
-    console.log('upvote is working', id);
     helpers.addUpvote(id);
+    this.loadSavedArticles();
+  }
+
+  addDownvote = (id) => {
+    helpers.addDownvote(id);
     this.loadSavedArticles();
   }
 
@@ -172,7 +174,8 @@ class App extends Component {
             <SavedArticles
               onDeleteClick={this.onDeleteClick.bind(this)}
               savedArticles={savedArticles}
-              upvoting={this.addUpvote}/>
+              upvoting={this.addUpvote}
+              downvoting={this.addDownvote}/>
           </div>
           <div style={style.footer}>
             <p>Built with coffee and anxiety by <a target="_blank" href="https://github.com/chinjon/nytimes-react">Jonathan Chin</a></p>

@@ -28,6 +28,7 @@ A search application using the NYTimes Search API and ReactJS with data persiste
 - [x] Implement READ operations from DB to frontend.
 - [x] Implement DELETE operations.
 - [ ] Create client-side error handling for users.
-- [ ] Added voting functions to saved articles.
+- [x] Add upvoting function to saved articles.
+- [x] Add downvoting function to saved articles.
 - [ ] Use sorting to prevent redudancies with search and saved articles from overlapping.
 - [ ] Create advanced search with dates.
