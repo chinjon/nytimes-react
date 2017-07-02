@@ -130,10 +130,10 @@ class App extends Component {
     }
   }
 
-  addUpvote(id) {
+  addUpvote = (id) => {
     console.log('upvote is working', id);
-
     helpers.addUpvote(id);
+    this.loadSavedArticles();
   }
 
   componentWillMount() {
