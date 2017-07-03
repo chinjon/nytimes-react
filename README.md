@@ -18,6 +18,7 @@ A search application using the NYTimes Search API and ReactJS with data persiste
 - Mongoose  
 - ExpressJS  
     - Concurrently
+- NYTimes Search API
 
 ***
 #### To-Do's  
@@ -32,3 +33,4 @@ A search application using the NYTimes Search API and ReactJS with data persiste
 - [x] Add downvoting function to saved articles.
 - [ ] Use sorting to prevent redudancies with search and saved articles from overlapping.
 - [ ] Create advanced search with dates.
+- [ ] Setup local storage to prevent multiple votes on an article from same user.
